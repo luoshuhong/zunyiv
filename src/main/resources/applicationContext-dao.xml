@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       					     http://www.springframework.org/schema/aop
+                      	    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                           	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                           	http://www.springframework.org/schema/tx
+                           	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                           	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+       default-autowire="byName">
+
+	<!-- ========== 数据源配置 start ========== -->
+    <bean id="writeDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
+<!--         <property name="url" value="jdbc:mysql://101.201.196.3:3306/b2ctest?autoReconnect=true" /> -->
+<!--         <property name="username" value="dbuser" />   -->
+<!--         <property name="password" value="B736FF60DB99807C" />  -->
+        
+        <property name="url" value="${datasource.url}" />
+        <property name="username" value="${datasource.username}" />  
+        <property name="password" value="${datasource.password}" />
+
+        
+    </bean>
+    <bean id="readDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
+        <property name="url" value="${datasource.url}" />
+        <property name="username" value="${datasource.username}" />  
+        <property name="password" value="${datasource.password}" /> 
+        
+<!--         <property name="url" value="jdbc:mysql://101.201.196.3:3306/b2ctest?autoReconnect=true" /> -->
+<!--         <property name="username" value="dbuser" />   -->
+<!--         <property name="password" value="B736FF60DB99807C" />  -->
+    </bean>
+
+    <!--<bean id="dynamicDataSource" class="com.newleader.nlsite.admin.dao.datasource.DynamicDataSource">-->
+        <!--<property name="dynamicDaSourceMap">-->
+	        <!--<map>-->
+		       	<!--<entry key="readDataSource" value-ref="readDataSource" />-->
+		       	<!--<entry key="writeDataSource" value-ref="writeDataSource" />-->
+	        <!--</map>-->
+        <!--</property>-->
+        <!--<property name="defaultTargetDataSource" ref="writeDataSource"/> -->
+    <!--</bean>-->
+    <!-- ========== 数据源配置 end ========== -->
+
+
+    <!--<bean id="virualStatDao" class="com.newleader.nlsite.admin.dao.VirualStatDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="statActionDataDao" class="com.newleader.nlsite.admin.dao.StatActionDataDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="statUserActiveDao" class="com.newleader.nlsite.admin.dao.StatUserActiveDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="statResultDao" class="com.newleader.nlsite.admin.dao.StatResultDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="commonDao" class="com.newleader.nlsite.admin.dao.CommonDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="statMajorDao" class="com.newleader.nlsite.admin.dao.StatMajorDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="statViralProDao" class="com.newleader.nlsite.admin.dao.StatViralProDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="statViralLoveDao" class="com.newleader.nlsite.admin.dao.StatViralLoveDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="ifMessageDao" class="com.newleader.nlsite.admin.dao.IfMessageDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+	<!--<bean id="statLoveMsgDao" class="com.newleader.nlsite.admin.dao.StatLoveMsgDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="statMyPageDao" class="com.newleader.nlsite.admin.dao.StatMyPageDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <!--<bean id="ticketDao" class="com.newleader.nlsite.admin.dao.TicketDao">  -->
+    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
+    <!--</bean>-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="writeDataSource" />
+	</bean>
+    
+</beans>
