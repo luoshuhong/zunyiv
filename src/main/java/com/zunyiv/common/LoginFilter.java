@@ -64,9 +64,7 @@ public class LoginFilter implements Filter {
      */
     public boolean isExclusive(String url){
     	//这里只拦截/admin下的请求
-    	if (url.contains("/admin/channel/queryEffect") 
-    			|| url.contains("b2cj/channelEffect.jsp")
-    			|| url.contains("/admin/qrCode/getQrCode") || url.contains(".css")
+    	if (url.contains("/admin/channel/queryEffect")   || url.contains(".css")
     			|| url.contains(".png") || url.contains(".jpg") 
     			|| (url.contains(".js") && !url.contains(".jsp"))) {   
     		return true;

@@ -39,6 +39,9 @@ date 2016
 				</select>
 			</div>
 		</div>
+		<div class="form-group">
+			<label for="freeType" class="col-sm-2 control-label"><a target="_self" href="https://api.weibo.com/oauth2/authorize?client_id=2953793759&redirect_uri=http://www.zunyi.me/weibo/redirect&response_type=code">微博授权</a></label>
+		</div>
 		<%--<div id="freeCountDiv" class="form-group" style="display: none;">--%>
 			<%--<label for="freeCount" class="col-sm-2 control-label">免费份数：</label> --%>
 			<%--<div class="col-sm-10">--%>
