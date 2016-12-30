@@ -97,71 +97,30 @@ date 2016
 						<a href="#" >  <i class="glyphicon glyphicon-th-large"></i> 首页</a>
 					</li>
 					<li>
-						<a href="#channelManage" class="nav-header collapsed" data-toggle="collapse"> 
+						<a href="#userManage" class="nav-header collapsed" data-toggle="collapse">
 							<i class="glyphicon glyphicon-credit-card" ></i> 用户管理 <span
 							class="pull-right glyphicon glyphicon-chevron-down"></span>
 						</a>
-						<ul id="channelManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
+						<ul id="userManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
+                            <li><a href="#" onclick="fillDataArea('userMemberCenter');"><i class="glyphicon glyphicon-search"></i>我的个人中心</a></li>
 							<li><a href="#" onclick="fillDataArea('userAdd');"><i class="glyphicon glyphicon-plus"></i>用户添加</a></li>
 							<li><a href="#" onclick="fillDataArea('userQuery');"><i class="glyphicon glyphicon-search"></i>用户查询</a></li>
 						</ul>
 					</li>
-					<!--
-					<li>
-						<a href="#virualManage" class="nav-header collapsed" data-toggle="collapse"> 
-							<i class="glyphicon glyphicon-credit-card" ></i> 运营统计 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
-						</a>
-						<ul id="virualManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
-							<li><a href="#" onclick="fillDataArea('viralGroupByDate');"><i class="glyphicon glyphicon-th-list"></i>viral统计-时间维度</a></li>
-							<li><a href="#" onclick="fillDataArea('viralGroupByChannel');"><i class="glyphicon glyphicon-th-list"></i>viral统计-渠道维度</a></li>
-							<li><a href="#" onclick="fillDataArea('statLoveMessage');"><i class="glyphicon glyphicon-th-list"></i>爱情数据统计</a></li>
-							<li><a href="#" onclick="fillDataArea('myPage');"><i class="glyphicon glyphicon-th-list"></i>MyPage统计</a></li>
-							<li><a href="#" onclick="fillDataArea('statMajor');"><i class="glyphicon glyphicon-th-list"></i>总表统计</a></li>
-							<li><a href="#" onclick="fillDataArea('userActive');"><i class="glyphicon glyphicon-th-list"></i>活跃用户访问统计(UV/PV)</a></li>
-							<li><a href="#" onclick="fillDataArea('userActiveSh');"><i class="glyphicon glyphicon-th-list"></i>活跃用户分析</a></li>
-							<li><a href="#" onclick="fillDataArea('userActiveShCount');"><i class="glyphicon glyphicon-th-list"></i>用户活跃天数统计</a></li>
-							<li><a href="#" onclick="fillDataArea('statProNewProcess');"><i class="glyphicon glyphicon-th-list"></i>新版职业测评统计</a></li>
-							<li><a href="#" onclick="fillDataArea('userNewActiveSh');"><i class="glyphicon glyphicon-th-list"></i>新版活跃用户分析</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="#ugcManage" class="nav-header collapsed" data-toggle="collapse"> 
-							<i class="glyphicon glyphicon-credit-card" ></i> UGC管理 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
-						</a>
-						<ul id="ugcManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
-							<li><a href="#" onclick="fillDataArea('ugcHotChoose');"><i class="glyphicon glyphicon-th-list"></i>热门筛选</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="#cufManage" class="nav-header collapsed" data-toggle="collapse"> 
-							<i class="glyphicon glyphicon-credit-card" ></i> CUF数据统计 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
-						</a>
-						<ul id="cufManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
-							<li><a href="#" onclick="fillDataArea('cufSummary');"><i class="glyphicon glyphicon-th-list"></i>整体数据统计</a></li>
-							<li><a href="#" onclick="fillDataArea('cufActive');"><i class="glyphicon glyphicon-th-list"></i>活跃数据统计</a></li>
-							<li><a href="#" onclick="fillDataArea('cufQuestion');"><i class="glyphicon glyphicon-th-list"></i>问卷统计</a></li>
-							<li><a href="#" onclick="fillDataArea('cufRegion');"><i class="glyphicon glyphicon-th-list"></i>报名地区统计</a></li>
-							<li><a href="#" onclick="fillDataArea('cufRole');"><i class="glyphicon glyphicon-th-list"></i>角色统计</a></li>
-							<li><a href="#" onclick="fillDataArea('cufTemplateMessage');"><i class="glyphicon glyphicon-th-list"></i>发送消息模板统计</a></li>
-						</ul> 
-					</li>
-
-					<li>
-						<a href="#pushRecordManage" class="nav-header collapsed" data-toggle="collapse">
-							<i class="glyphicon glyphicon-credit-card" ></i> 幸福职业推送统计 <span class="pull-right glyphicon glyphicon-chevron-down"></span>
-						</a>
-						<ul id="pushRecordManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
-							<li><a href="#" onclick="fillDataArea('pushRecordAdd');"><i class="glyphicon glyphicon-th-list"></i>添加推送</a></li>
-							<li><a href="#" onclick="fillDataArea('pushRecordQuery');"><i class="glyphicon glyphicon-th-list"></i>记录查询</a></li>
-						</ul>
-					</li>
-					-->
-
-					
+                    <li>
+                        <a href="#weiboManage" class="nav-header collapsed" data-toggle="collapse">
+                            <i class="glyphicon glyphicon-credit-card" ></i> 微博管理 <span
+                                class="pull-right glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul id="weiboManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
+                            <li><a href="#" onclick="fillDataArea('weiboQuery');"><i class="glyphicon glyphicon-search"></i>微博查看</a></li>
+                            <li><a href="#" onclick="fillDataArea('weiboStat');"><i class="glyphicon glyphicon-search"></i>微博统计</a></li>
+                        </ul>
+                    </li>
 				</ul>
 			</div>
- 			<div id="data"  class="col-md-10" > <h3>这里还没有想好放神马...  Orz </h3></div>
-			<!--<div id="data"  class="col-md-10" > <iframe src='../game/gobang.html' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe></div>-->
+            <!--<div id="data"  class="col-md-10" > <h3>这里还没有想好放神马...  Orz </h3></div>-->
+           <div id="data"  class="col-md-10" > <iframe src='../game/gobang.html' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe></div>
 			
 		</div>
 	</div>
@@ -171,11 +130,17 @@ date 2016
 		var iframe = "";
 		if (type == 'userAdd') {
 			iframe = "<iframe src='../admin/userAdd.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
-		}  else {
-			 iframe = "<iframe src='test.jsp' frameBorder=0  width='100%' height='90%' scrolling='auto' ></iframe>";
+		}  else if (type == 'userMemberCenter') {
+            iframe = "<iframe src='../admin/userMemberCenter.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
+        } else if (type == 'userQuery') {
+            iframe = "<iframe src='../admin/userQuery.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
+        } else if (type == 'weiboQuery') {
+            iframe = "<iframe src='../admin/weiboQuery.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
+        } else if (type == 'weiboStat') {
+            iframe = "<iframe src='../admin/weiboStat.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
+        } else {
+//			 iframe = "<iframe src='test.jsp' frameBorder=0  width='100%' height='90%' scrolling='auto' ></iframe>";
 		}
-
-		
 		$("#data").html(iframe);
 	}  
 	

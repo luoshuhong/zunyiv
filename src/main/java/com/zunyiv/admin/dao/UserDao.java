@@ -89,14 +89,15 @@ public class UserDao {
 	class UserRowMapper implements RowMapper<User> {
 		@Override
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+//			id,openid,nickName,realName,phone,professional,birthday,inputTime,role,password,avator
 			User user = new User();
 			user.setId(rs.getInt("id"));
-			user.setOpenid(rs.getString("openId"));
+			user.setOpenid(rs.getString("openid"));
 			user.setNickName(rs.getString("nickName"));
 			user.setRealName(rs.getString("realName"));
 			user.setPhone(rs.getString("phone"));
-			user.setBirthday(rs.getDate("birthday").toString());
-			user.setInputTime(rs.getDate("inputTime").toString());
+			user.setBirthday(rs.getDate("birthday"));
+			user.setInputTime(rs.getDate("inputTime"));
 			user.setRole(rs.getInt("role"));
 			user.setPassword(rs.getString("password"));
 			user.setAvator(rs.getString("avator"));

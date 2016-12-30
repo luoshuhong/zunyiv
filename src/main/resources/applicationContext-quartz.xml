@@ -5,9 +5,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd"
        >
-	<!--<task:scheduled-tasks>-->
-        <!-- 用户活跃度 -->
-        <!--<task:scheduled ref="quartzService" method="quartzUserActiveStat" cron="0 5 0 * * ?"/>-->
+	<task:scheduled-tasks>
+        <!-- 定时同步微博 -->
+        <task:scheduled ref="weiboService" method="syncWeiboRecord" cron="0 3/20 * * * ?"/>
+        <!-- 定时更新微博数据 -->
+        <task:scheduled ref="weiboService" method="updateWeiboRecord" cron="0 1 9,12,15,22 * * ?"/>
+        <!--<task:scheduled ref="weiboService" method="updateWeiboRecord" cron="0 6/10 * * * ?"/>-->
+
         <!-- 主表统计 -->
         <!--<task:scheduled ref="quartzService" method="quartzMajorStat" cron="0 15 9 * * ?"/>-->
 		<!-- Viral 按时间维度统计 -->
@@ -16,20 +20,8 @@
 <!-- 		<task:scheduled ref="quartzService" method="quartzViralGroupChannelStat" cron="0 1/10 * * * ?"/> -->
 		<!-- 统计渠道关注量/取关量/Viral/分享量数据 -->
 <!-- 		<task:scheduled ref="quartzService" method="quartzChannelSubscribeStat" cron="0 9/10 * * * ?"/> -->
-		
-		<!-- 更新渠道 -->
-<!-- 		<task:scheduled ref="quartzService" method="quartzStatChannel" cron="0 0/3 * * * ?"/> -->
-		
 		<!-- 爱情小纸条数据统计 -->
  		<!--<task:scheduled ref="quartzService" method="quartzLoveMessageStat" cron="0 15 1 * * ?"/> -->
- 		<!-- my page 条数据统计 -->
- 		<!-- <task:scheduled ref="quartzService" method="quartzMyPageStat" cron="0 15 15 * * ?"/> -->
-<!--  		<task:scheduled ref="quartzService" method="quartzMyPageStat" cron="0 25 0 * * ?"/> -->
- 		
-<!--  		<task:scheduled ref="quartzService" method="quartzFillOrderData" cron="0 46 22 * * ?"/> -->
-
-<!-- 	<task:scheduled ref="quartzService" method="fillData" cron="0 4 13 * * ?"/>   -->
-
-    <!--</task:scheduled-tasks>-->
+    </task:scheduled-tasks>
     
 </beans>

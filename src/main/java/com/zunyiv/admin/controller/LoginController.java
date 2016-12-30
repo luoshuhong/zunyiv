@@ -4,9 +4,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.zunyiv.admin.model.User;
+import com.zunyiv.admin.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +30,9 @@ public class LoginController {
     private final static long cookieMaxAge = 60 * 60 * 24 * 7 * 2;
     
     private static String pwd = "zunyiv";
+
+	@Autowired
+	private UserService userService;
     
 	@RequestMapping("/login")
 	@ResponseBody
@@ -36,23 +42,39 @@ public class LoginController {
 		String autoLogin = request.getParameter("autoLogin");
 		
 		log.info("method=login,userName=" + username + ",password=*****" );
-		
+		System.out.println("method=login,userName=" + username + ",password=*****" );
 		if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
 			return RequestUtils.failReturn("error");
 		}
+
 		if(username.equals("admin") && password.equals(pwd)){
-			SessionUtils.setSession(request, SessionUtils.LONIG_FLAG, "true");
-			log.info("method=login,登陆成功" );
-			if ("0".equals(autoLogin)) {
-				saveCookie(response);   //放置cookie
-			} 
-			
-            return RequestUtils.successReturn("success");
+			return loginSuccess(request, response, autoLogin);
+		} else {
+			User user = userService.query(username);
+			if (null != user && user.getPassword().equals(MD5Util.md5(password))) {
+				return loginSuccess(request, response, autoLogin);
+			}
 		}
         log.info("method=login,用户名或密码错误" );
         return RequestUtils.failReturn("error");
 	}
-	
+
+	/**
+	 * 登陆成功
+	 * @param request
+	 * @param response
+	 * @param autoLogin
+     * @return
+     */
+	public String loginSuccess(HttpServletRequest request, HttpServletResponse response, String autoLogin) {
+		SessionUtils.setSession(request, SessionUtils.LONIG_FLAG, "true");
+		log.info("method=login,登陆成功" );
+		if ("0".equals(autoLogin)) {
+			saveCookie(response);   //放置cookie
+		}
+		return RequestUtils.successReturn("success");
+	}
+
 	/**
 	 * 放置cookie
 	 * @param response

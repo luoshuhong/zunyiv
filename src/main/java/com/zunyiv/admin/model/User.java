@@ -1,5 +1,7 @@
 package com.zunyiv.admin.model;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2016/12/2.
  */
@@ -9,12 +11,21 @@ public class User {
     private String nickName;
     private String realName;
     private String phone;
-    private String birthday;
-    private String inputTime;
-    private int role;         //0：粉丝  1：管理员  2：超级管理员
+    private Date birthday;
+    private Date inputTime;
+    private int role;         //0：管理员  1：超级管理员
     private String password;
     private int professional; //0：学生 1：工作
     private String avator;
+
+    public User(String phone, int role, String pwd) {
+        this.phone = phone;
+        this.role = role;
+        this.password = pwd;
+    }
+    public User(){
+
+    }
 
     public int getProfessional() {
         return professional;
@@ -60,13 +71,6 @@ public class User {
         this.phone = phone;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public void setInputTime(String inputTime) {
-        this.inputTime = inputTime;
-    }
 
     public void setRole(int role) {
         this.role = role;
@@ -92,12 +96,20 @@ public class User {
         return phone;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public String getInputTime() {
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Date getInputTime() {
         return inputTime;
+    }
+
+    public void setInputTime(Date inputTime) {
+        this.inputTime = inputTime;
     }
 
     public int getRole() {

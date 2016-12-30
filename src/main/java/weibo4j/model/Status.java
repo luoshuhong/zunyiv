@@ -34,6 +34,7 @@ public class Status extends WeiboResponse {
 	private double longitude = -1;                       //经度
 	private int repostsCount;                            //转发数
 	private int commentsCount;                           //评论数
+	private int attitudesCount;                        //表态数
 	private String annotations;                          //元数据，没有时不返回此字段
 	private int mlevel;
 	private Visible visible;
@@ -67,6 +68,7 @@ public class Status extends WeiboResponse {
 			originalPic = json.getString("original_pic");
 			repostsCount = json.getInt("reposts_count");
 			commentsCount = json.getInt("comments_count");
+			attitudesCount = json.getInt("attitudes_count");
 			annotations = json.getString("annotations");
 			if(!json.isNull("user"))
 				user = new User(json.getJSONObject("user"));
@@ -99,7 +101,8 @@ public class Status extends WeiboResponse {
 				}
 			}
 		}
-		longitude=Double.parseDouble(value.toString());
+		longitude = 0;
+//		longitude=Double.parseDouble(value.toString());
 	}
 
 
@@ -252,7 +255,15 @@ public class Status extends WeiboResponse {
 	public void setVisible(Visible visible) {
 		this.visible = visible;
 	}
-	
+
+	public int getAttitudesCount() {
+		return attitudesCount;
+	}
+
+	public void setAttitudesCount(int attitudesCount) {
+		this.attitudesCount = attitudesCount;
+	}
+
 	public boolean isTruncated() {
 		return truncated;
 	}

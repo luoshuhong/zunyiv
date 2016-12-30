@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
+		<title>遵义同城会-后台登陆</title>
     	<style type="text/css">
 			body {
 				background: #444;
@@ -34,7 +35,7 @@
 	<body>
 		<div class="container">
 		  <div class="loginBox row">
-		  		<h2 class="text-center">后台登录</h2>
+		  		<h2 class="text-center">zunyiv-后台登录</h2>
 				<form id="loginForm" action="javascript:login();"  method="post" class="form-horizontal lg-form">
 				  <div class="form-group has-success">
 				    <label for="username" class="col-sm-3 col-md-3 control-label">用户名</label>
@@ -58,7 +59,7 @@
 <!-- 			      	    <button class="btn btn-info" type="reset">清 空</button> -->
 				    </div>
 				    <div class="col-sm-6 col-md-6">
-				  		<label><input type="checkbox" id="autologin">&nbsp;两周内自动登录</label>
+				  		<%--<label><input type="checkbox" id="autologin">&nbsp;两周内自动登录</label>--%>
 			  		</div>
 				  </div>
 		  		</form>
@@ -74,14 +75,14 @@
 		
    		// 登录方法
         function login() {
-			alert('login');
         	var username = $("#username").val();
     		var password = $("#password").val();
     		var autoLogin = -1;
-    		if($("#autologin").prop("checked") == true) {
-    			autoLogin = 0;
-    		}
-    		var postData = {"username":username, "password":password, "autoLogin":autoLogin};
+			if($("#autologin").prop("checked") == true) {
+				autoLogin = 0;
+			}
+
+			var postData = {"username":username, "password":password, "autoLogin":autoLogin};
             $.ajax({
     			type: "POST",
     			url: "${ctx}/admin/login.do",

@@ -15,11 +15,9 @@ public class MD5Util
 	 * @throws NoSuchAlgorithmException
 	 * @throws Exception
 	 */
-	public static String md5(String source) throws UnsupportedEncodingException, NoSuchAlgorithmException
-	{
+	public static String md5(String source) {
 		String resultHash = null;
-		try
-		{
+		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
 			byte[] result = new byte[md5.getDigestLength()];
 			md5.reset();
@@ -28,8 +26,7 @@ public class MD5Util
 
 			StringBuffer buf = new StringBuffer(result.length * 2);
 
-			for (int i = 0; i < result.length; i++)
-			{
+			for (int i = 0; i < result.length; i++) {
 				int intVal = result[i] & 0xff;
 				if (intVal < 0x10)
 				{
@@ -38,9 +35,7 @@ public class MD5Util
 				buf.append(Integer.toHexString(intVal));
 			}
 			resultHash = buf.toString();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 
 		}
 		return resultHash;

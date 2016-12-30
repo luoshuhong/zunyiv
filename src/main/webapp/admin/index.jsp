@@ -12,6 +12,7 @@ date 2015-9-11
 <html lang="zh-CN">
 	<head>
 	<title>后台管理</title>
+	<link rel="shortcut icon" type="image/x-icon" href="images/head_32.ico" media="screen" />
 	</head>
 	<body>
 		<jsp:include page="../common/admin-top-nav.jsp" />

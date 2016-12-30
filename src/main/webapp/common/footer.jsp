@@ -28,7 +28,7 @@ date 2016
 	<nav class="navbar navbar-default navbar-fixed-bottom">
 	  <div class="container">
 	  	<div class="home_footer_copyright" >
-		     © Copyright@2016 遵义同城会, All Rights Reserved.
+		     © Copyright@2016 遵义同城会文化传播有限公司, All Rights Reserved.
 	  	</div>
 	  </div>
 	</nav>

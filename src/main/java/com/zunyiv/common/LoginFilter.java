@@ -42,12 +42,12 @@ public class LoginFilter implements Filter {
 //        super.doFilter(request, response, chain);
 //        //验证cookie是否自动登录
         boolean autoLogin = LoginController.readCookieAndLogon(httpRequest, httpResponse) ;
-//        
+
         // 没有登录，跳到 登录页
-//        if (!autoLogin && (StringUtils.isEmpty(isLogin) || !"true".equals(isLogin))) {
-//            httpResponse.sendRedirect(httpRequest.getContextPath()+ "/admin/login.jsp");
-//            return;
-//        }
+        if (!autoLogin && (StringUtils.isEmpty(isLogin) || !"true".equals(isLogin))) {
+            httpResponse.sendRedirect(httpRequest.getContextPath()+ "/admin/login.jsp");
+            return;
+        }
         chain.doFilter(request, response);
     }
 
@@ -64,7 +64,7 @@ public class LoginFilter implements Filter {
      */
     public boolean isExclusive(String url){
     	//这里只拦截/admin下的请求
-    	if (url.contains("/admin/channel/queryEffect")   || url.contains(".css")
+    	if (url.contains("/admin/login.do")   || url.contains(".css") || url.contains("/admin/login.jsp")
     			|| url.contains(".png") || url.contains(".jpg") 
     			|| (url.contains(".js") && !url.contains(".jsp"))) {   
     		return true;
