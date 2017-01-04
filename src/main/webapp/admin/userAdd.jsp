@@ -19,7 +19,7 @@ date 2016
 		<div class="form-group">
 			<label for="phone" class="col-sm-2 control-label">手机号：</label>
 			<div class="col-sm-10">
-				<input id="phone" type="text" class="form-control"  name="phone"  style="width: 200px;" placeholder="请输入手机号" required="required" >
+				<input id="phone" type="text" class="form-control"  name="phone"  style="width: 260px;" placeholder="请输入手机号(初始密码为手机号)" required="required" >
 			</div>
 		</div>
 		<%--<div class="form-group">--%>
@@ -32,9 +32,10 @@ date 2016
 		<div class="form-group">
 			<label for="role" class="col-sm-2 control-label">角色：</label>
 			<div class="col-sm-10">
-				<select class="form-control" style="width: 200px;" id="role">
+				<select class="form-control" style="width: 260px;" id="role">
 				  <option value="0">普通</option>
 				  <option value="1">管理员</option>
+				  <option value="2">超级管理员</option>
 				</select>
 			</div>
 		</div>

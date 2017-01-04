@@ -15,7 +15,7 @@ date 2016
 	</head>
 
 	<body>
-		微博统计
+		<h2>微博统计</h2>
 	</body>
 
 <script type="text/javascript">

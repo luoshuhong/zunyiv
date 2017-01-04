@@ -1,4 +1,5 @@
-<%-- 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
 Title: admin-left-menu.jsp
 Description: 后台左侧菜单页
 Company:
@@ -96,17 +97,21 @@ date 2016
 					<li class="active">
 						<a href="#" >  <i class="glyphicon glyphicon-th-large"></i> 首页</a>
 					</li>
-					<li>
-						<a href="#userManage" class="nav-header collapsed" data-toggle="collapse">
-							<i class="glyphicon glyphicon-credit-card" ></i> 用户管理 <span
-							class="pull-right glyphicon glyphicon-chevron-down"></span>
-						</a>
-						<ul id="userManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
-                            <li><a href="#" onclick="fillDataArea('userMemberCenter');"><i class="glyphicon glyphicon-search"></i>我的个人中心</a></li>
-							<li><a href="#" onclick="fillDataArea('userAdd');"><i class="glyphicon glyphicon-plus"></i>用户添加</a></li>
-							<li><a href="#" onclick="fillDataArea('userQuery');"><i class="glyphicon glyphicon-search"></i>用户查询</a></li>
-						</ul>
-					</li>
+                    <!---->
+                    <c:if test="${sessionScope.get('role') == 2}">
+                        <li>
+                            <a href="#userManage" class="nav-header collapsed" data-toggle="collapse">
+                                <i class="glyphicon glyphicon-credit-card" ></i> 用户管理 <span
+                                class="pull-right glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul id="userManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
+                                <%--<li><a href="#" onclick="fillDataArea('userMemberCenter');"><i class="glyphicon glyphicon-search"></i>我的个人中心</a></li>--%>
+                                    <li><a href="#" onclick="fillDataArea('userAdd');"><i class="glyphicon glyphicon-plus"></i>用户添加</a></li>
+                                    <li><a href="#" onclick="fillDataArea('userQuery');"><i class="glyphicon glyphicon-search"></i>用户查询</a></li>
+                            </ul>
+                        </li>
+                    </c:if>
+
                     <li>
                         <a href="#weiboManage" class="nav-header collapsed" data-toggle="collapse">
                             <i class="glyphicon glyphicon-credit-card" ></i> 微博管理 <span
@@ -120,7 +125,8 @@ date 2016
 				</ul>
 			</div>
             <!--<div id="data"  class="col-md-10" > <h3>这里还没有想好放神马...  Orz </h3></div>-->
-           <div id="data"  class="col-md-10" > <iframe src='../game/gobang.html' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe></div>
+           <%--<div id="data"  class="col-md-10" > <iframe src='../game/gobang.html' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe></div>--%>
+            <div id="data"  class="col-md-10" > <iframe src='../admin/userMemberCenter.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe></div>
 			
 		</div>
 	</div>

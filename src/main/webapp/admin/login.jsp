@@ -36,11 +36,11 @@
 		<div class="container">
 		  <div class="loginBox row">
 		  		<h2 class="text-center">zunyiv-后台登录</h2>
-				<form id="loginForm" action="javascript:login();"  method="post" class="form-horizontal lg-form">
+				<form id="loginForm" action="${ctx}/admin/login.do"  method="post" class="form-horizontal lg-form">
 				  <div class="form-group has-success">
 				    <label for="username" class="col-sm-3 col-md-3 control-label">用户名</label>
 				    <div class="col-sm-9 col-md-9">
-				      <input id="username" type="text" class="form-control" name="username" placeholder="请输入用户名" value="" required="required">
+				      <input id="username" type="text" class="form-control" name="username" placeholder="请输入用户名" value="${username}" required="required">
 				    </div>
 				  </div>
 				  <div class="form-group has-success">
@@ -50,7 +50,7 @@
 				    </div>
 				  </div>
 			  	  <div class="form-group">
-			  	  	<div id="errMsg" class="col-sm-offset-4 col-sm-10" style="color: #990033;"></div> <!-- 这里是登陆错误信息 -->
+			  	  	<div id="errMsg" class="col-sm-offset-4 col-sm-10" style="color: #990033;">${errMsg}</div> <!-- 这里是登陆错误信息 -->
 				  </div>
 				  <div class="form-group container-fluid">
 				    <div class="col-sm-offset-2 col-sm-4 col-md-4">
@@ -72,7 +72,6 @@
 		if(top.location!=self.location){
 			parent.location.reload();
 		}
-		
    		// 登录方法
         function login() {
         	var username = $("#username").val();
@@ -81,7 +80,6 @@
 			if($("#autologin").prop("checked") == true) {
 				autoLogin = 0;
 			}
-
 			var postData = {"username":username, "password":password, "autoLogin":autoLogin};
             $.ajax({
     			type: "POST",
@@ -99,6 +97,5 @@
     			}
     		});
         }
-   		
    	</script>
 </html>

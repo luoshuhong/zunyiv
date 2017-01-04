@@ -16,7 +16,7 @@ date 2016
 	<div class="navbar  navbar-static-top nav-justified" >
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="" id="logo">遵义同城会-后台管理系统 </a>
+                <a class="navbar-brand" href="" id="logo">遵义同城会-后台管理系统 | HOME（点击返回主页） </a>
             </div>
 <!--             <ul class="nav navbar-nav navbar-right" > -->
 <!-- 				<li><a href="##">关于我们</a></li> -->

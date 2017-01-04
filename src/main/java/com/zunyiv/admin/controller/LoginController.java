@@ -11,6 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,28 +36,37 @@ public class LoginController {
 	private UserService userService;
     
 	@RequestMapping("/login")
-	@ResponseBody
-	public String login(HttpServletRequest request, HttpServletResponse response){
+	public String login(HttpServletRequest request, HttpServletResponse response, Model model){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String autoLogin = request.getParameter("autoLogin");
-		
+		model.addAttribute("username", username);
+
+		String isLogin = (String) SessionUtils.getSession(request, SessionUtils.LONIG_FLAG);
+		if ("true".equals(isLogin)) {
+			return "index";
+		}
+
 		log.info("method=login,userName=" + username + ",password=*****" );
 		System.out.println("method=login,userName=" + username + ",password=*****" );
 		if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
-			return RequestUtils.failReturn("error");
+			model.addAttribute("errMsg", "用户名或密码为空，请重试");
+			return "login";
 		}
 
-		if(username.equals("admin") && password.equals(pwd)){
-			return loginSuccess(request, response, autoLogin);
-		} else {
+//		if(username.equals("admin") && password.equals(pwd)){
+//			return loginSuccess(request, response, autoLogin);
+//		} else {
 			User user = userService.query(username);
 			if (null != user && user.getPassword().equals(MD5Util.md5(password))) {
+				SessionUtils.setSession(request, SessionUtils.ROLE, user.getRole());
+				SessionUtils.setSession(request, SessionUtils.USERNAME, StringUtils.isEmpty(user.getRealName()) ? user.getPhone() : user.getRealName());
 				return loginSuccess(request, response, autoLogin);
 			}
-		}
+//		}
         log.info("method=login,用户名或密码错误" );
-        return RequestUtils.failReturn("error");
+		model.addAttribute("errMsg", "用户名或密码错误，请重试");
+		return "login";
 	}
 
 	/**
@@ -72,7 +82,7 @@ public class LoginController {
 		if ("0".equals(autoLogin)) {
 			saveCookie(response);   //放置cookie
 		}
-		return RequestUtils.successReturn("success");
+		return "index";
 	}
 
 	/**

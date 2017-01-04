@@ -9,7 +9,7 @@
         <!-- 定时同步微博 -->
         <task:scheduled ref="weiboService" method="syncWeiboRecord" cron="0 3/20 * * * ?"/>
         <!-- 定时更新微博数据 -->
-        <task:scheduled ref="weiboService" method="updateWeiboRecord" cron="0 1 9,12,15,22 * * ?"/>
+        <task:scheduled ref="weiboService" method="updateWeiboRecord" cron="0 1 7,18 * * ?"/>
         <!--<task:scheduled ref="weiboService" method="updateWeiboRecord" cron="0 6/10 * * * ?"/>-->
 
         <!-- 主表统计 -->

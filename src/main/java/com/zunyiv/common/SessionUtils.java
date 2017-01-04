@@ -18,11 +18,15 @@ import org.apache.commons.lang3.StringUtils;
 public class SessionUtils {
 	//所有key都在这里定义
 	public static final String LONIG_FLAG = "login_flag";    //登陆标识
+	public static final String ROLE = "role";    //角色
+	public static final String USERNAME = "username";    //名字
     
 	//存放所有session中的key
 	private static  Set<String> sessionKey = new HashSet<String>();
 	static {
 		sessionKey.add(LONIG_FLAG);
+		sessionKey.add(ROLE);
+		sessionKey.add(USERNAME);
 	}
 	
 	/**

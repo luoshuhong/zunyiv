@@ -27,7 +27,7 @@ date 2015-9-11
 <link type="text/css"  href="${ctx}/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript"  src="${ctx}/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${ctx}/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-
+<link rel="shortcut icon" type="${ctx}/image/x-icon" href="images/head_32.ico" media="screen" />
 <style type="text/css">
 	body {
 		font-family: '微软雅黑','Microsoft YaHei' !important;

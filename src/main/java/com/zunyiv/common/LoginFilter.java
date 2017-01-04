@@ -33,8 +33,8 @@ public class LoginFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String isLogin = (String) SessionUtils.getSession(httpRequest, SessionUtils.LONIG_FLAG);
-        // 过滤URL   
-        if(isExclusive(httpRequest.getRequestURL().toString())) {
+        // 过滤URL
+        if("true".equals(isLogin) || isExclusive(httpRequest.getRequestURL().toString())) {
             chain.doFilter(request, response);
             return;
         }
