@@ -13,10 +13,11 @@ public class User {
     private String phone;
     private Date birthday;
     private Date inputTime;
-    private int role;         //0：管理员  1：超级管理员
+    private int role;         //0：普通 1：管理员  2.超级管理员
     private String password;
     private int professional; //0：学生 1：工作
     private String avator;
+    private String weiboTail; //微博小尾巴
 
     public User(String phone, int role, String pwd) {
         this.phone = phone;
@@ -25,6 +26,14 @@ public class User {
     }
     public User(){
 
+    }
+
+    public String getWeiboTail() {
+        return weiboTail;
+    }
+
+    public void setWeiboTail(String weiboTail) {
+        this.weiboTail = weiboTail;
     }
 
     public int getProfessional() {

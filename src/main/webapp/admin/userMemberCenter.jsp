@@ -27,11 +27,11 @@ date 2016
 						</p>
 						<p>
 							<%--<a class="btn btn-primary btn-large" href="${ctx}/cuf/record.do">设置微博小尾巴</a>--%>
-							<a class="btn btn-primary btn-large" href="#">设置微博小尾巴</a>
-							<a class="btn btn-primary btn-large" href="#">补全信息</a>
+							<a class="btn btn-primary btn-large" href="javascript:setWeiboTail();">设置微博小尾巴</a>
+							<a class="btn btn-primary btn-large" href="javascript:setSelfInfo();">补全信息</a>
 							<a class="btn btn-primary btn-large" target="_self" href="../game/gobang.html">来盘五子棋</a>
 							<c:if test="${sessionScope.get('role') == 2}">
-							<a class="btn btn-primary btn-large" target="_self" href="https://api.weibo.com/oauth2/authorize?client_id=1403067685&redirect_uri=http://www.zunyi.me/weibo/redirect&response_type=code">微博授权</a>
+								<a class="btn btn-primary btn-large" target="_self" href="https://api.weibo.com/oauth2/authorize?client_id=1403067685&redirect_uri=http://www.zunyi.me/weibo/redirect&response_type=code">微博授权</a>
 							</c:if>
 						</p>
 					</div>
@@ -39,9 +39,57 @@ date 2016
 			</div>
 		</div>
 
+		<!-- 设置微博小尾巴 -->
+		<div class="modal" id="setWeiboTail" style="margin: auto">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h3 >设置微博小尾巴</h3>
+					</div>
+					<div class="modal-body"  style="width: 560px; height: 320px;">
+						<form class="form-horizontal" >
+							<div class="form-group ">
+								<%--<label for="subCode" class="col-sm-3 control-label">渠道编码：</label>--%>
+								<%--<input  id="subCode" type="text" readonly="readonly" class="form-control" style="width: 200px;" placeholder="渠道编码">--%>
+								<label for="weiboTailSelect" class="col-sm-3 control-label">选择：</label>
+								<select class="form-control" style="width: 150px;" id="weiboTailSelect" >
+									<option value="1">同城君007</option>
+									<option value="3">同城君007</option>
+									<option value="5">同城君008</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="weiboTail" class="col-sm-3 control-label">手动填写：</label>
+								<input  id="weiboTail" type="text" class="form-control" style="width: 200px;" placeholder="多个','逗号分隔">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<input class="btn btn-primary" type="button"  onclick="saveWeiboTail();" value="确认">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
 	</body>
 
 <script type="text/javascript">
+
+	// 设置微博小尾巴
+	function setWeiboTail() {
+		$('#setWeiboTail').modal('show');
+	}
+	function saveWeiboTail() {
+		$('#setWeiboTail').modal('hide');
+		alert('完善中，敬请期待！');
+	}
+
+	function setSelfInfo() {
+		alert('完善中，敬请期待！');
+	}
+
 	 function save() {
 		var name = $("#channelName").val();
 		var code = $("#channelCode").val();

@@ -66,7 +66,7 @@ public class UserDao {
 	 * @return
      */
 	public List<User> query() {
-		return this.jdbcTemplate.query(QUERY_RESULT_PARAM_ALL, new UserRowMapper());
+		return this.jdbcTemplate.query(QUERY_RESULT_PARAM_ALL + " where role > 0", new UserRowMapper());
 	}
 
 	/**

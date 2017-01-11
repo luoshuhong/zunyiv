@@ -38,12 +38,23 @@ public class WeiboRecord {
     private Date createDate;   //发送时间
     private String createDateStr; //发送时间（页面展示）
 
+    //统计用
+    private int weiboCount = 0;  //发微博数量
+
     public String getCreateDateStr() {
         if (null != createDate) {
             return DateUtils.date2Str(createDate);
         }
 
         return "";
+    }
+
+    public int getWeiboCount() {
+        return weiboCount;
+    }
+
+    public void setWeiboCount(int weiboCount) {
+        this.weiboCount = weiboCount;
     }
 
     public void setCreateDateStr(String createDateStr) {

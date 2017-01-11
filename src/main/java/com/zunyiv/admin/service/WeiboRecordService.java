@@ -35,5 +35,13 @@ public class WeiboRecordService {
         return this.weiboRecordDao.query(keyWord);
     }
 
-
+    /**
+     * 统计小尾巴发微博数量
+     * @param sDate
+     * @param eDate
+     * @return
+     */
+    public List<WeiboRecord> stat(String sDate, String eDate) {
+        return this.weiboRecordDao.stat(sDate, eDate);
+    }
 }

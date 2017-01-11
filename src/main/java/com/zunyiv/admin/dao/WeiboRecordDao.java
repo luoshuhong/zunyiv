@@ -9,8 +9,10 @@ import weibo4j.model.Status;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -101,14 +103,37 @@ public class WeiboRecordDao {
 	 * 根据发微博的时间查询
 	 * @param sDate
 	 * @param eDate
-     * @return
-     */
+	 * @return
+	 */
 	public List<WeiboRecord> query(String sDate, String eDate) {
 		String sql = "select id, userId, weiboId, content, url, repostsCount, commentsCount, likeCount, source, retweetedStatus,createDate " +
 				" from tb_weibo_record where createDate > ? and createDate < ? order by createDate desc";
 		List<WeiboRecord> list = this.jdbcTemplate.query(sql,new Object[]{sDate, eDate}, new WeiboRecordRowMapper());
 		return list;
 	}
+
+	/**
+	 * 统计小尾巴发微博数量
+	 * @param sDate
+	 * @param eDate
+	 * @return
+	 */
+	public List<WeiboRecord> stat(String sDate, String eDate) {
+		String sql = "select source, count(1) as count  from tb_weibo_record where createDate > ? and createDate < ? GROUP BY source ORDER BY count desc";
+		List<WeiboRecord> list = new ArrayList<>();
+		List<Map<String, Object>> listMap = this.jdbcTemplate.queryForList(sql,new Object[]{sDate, eDate});
+		if (listMap == null || 0 == listMap.size()) {
+			return list;
+		}
+		for (Map<String, Object> map : listMap) {
+			WeiboRecord model = new WeiboRecord();
+			model.setSource(map.get("source").toString());
+			model.setWeiboCount(Integer.valueOf(map.get("count").toString()));
+			list.add(model);
+		}
+		return list;
+	}
+
 
 	class WeiboRecordRowMapper implements RowMapper<WeiboRecord> {
 		@Override

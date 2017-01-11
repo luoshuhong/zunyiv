@@ -7,37 +7,9 @@
 
 //初始化
 $(function() {
-    initQueryDate();  //默认初始化查询时间范围
-//    query();          //查询数据
+    // initQueryDate();  //默认初始化查询时间范围
+    // query();          //查询数据
 });
-
-/**
- *  一些累计数据
- */
-function totalQuery() {
-	$.ajax({
-		type: "POST",
-		url: "../admin/userActive/totalQuery",
-		dataType:"json",
-		async:false,
-		success : function(msg) {
-            var json = msg;
-			if (json.status == 'success') {
-				var data = JSON.parse(json.data);
-				$("#regist").text(data.regist);
-				$("#school").text(data.school);
-				$("#love").text(data.love);
-				$("#dna").text(data.dna);
-				$("#value").text(data.value);
-				$("#behavior").text(data.behavior);
-				$("#motivation").text(data.motivation);
-				$("#passion").text(data.passion);
-				$("#loveInit").text(data.loveInit);
-			} else {
-			}
-		} 
-	});
-}
 
 /**
  * 按时间查询
@@ -48,7 +20,7 @@ function query() {
 	var postData = {"startDate":startDate, "endDate":endDate};
 	$.ajax({
 		type: "POST",
-		url: "../admin/userActive/query",
+		url: "../admin/channelStat/query",
 		data: postData,
 		dataType:"json",
 		async:false,
@@ -56,10 +28,13 @@ function query() {
             var json = msg;
 			if (json.status == 'success') {
 				var data = JSON.parse(json.data);
-				var uv = JSON.parse(data.uv);
-				var pv = JSON.parse(data.pv);
-				uvFillData(uv.xAxis,uv.series);//绘制图表
-				pvFillData(pv.xAxis,pv.series);//绘制图表
+				var subscribe = JSON.parse(data.subscribe);
+				var unsubscribe = JSON.parse(data.unsubscribe);
+				var backflow = JSON.parse(data.backflow);
+				fillData(subscribe.xAxis,subscribe.series);//绘制图表
+				unsubscribeFillData(unsubscribe.xAxis,unsubscribe.series);//绘制图表
+//				backflowFillData(backflow.xAxis,backflow.series);//绘制图表
+				
 			} else {
 				alert('错误，请重试！');
 			}
@@ -70,6 +45,7 @@ function query() {
 	});
 }
 
+//默认初始化查询时间范围
 //默认初始化查询时间范围
 function initQueryDate() {
 	var now = new Date();
@@ -100,19 +76,52 @@ function initQueryDate() {
 }
 
 /**
- * UV统计
+ * 填充图表数据
  * @param xAxis 横轴
  * @param series 数据
  */
-function uvFillData(xAxis, series) {
+function fillData(xAxis, series) {
 	//绘制图表
 	Highcharts.setOptions(Highcharts.theme);
-	$('#uVContainer').highcharts({
+	$('#container').highcharts({
 		chart : {
 			type : 'line'
 		},
 		title : {
-			text : 'UV(独立用户访问量 d-天 w-周 m-月)'
+			text : '推广统计'
+		},
+		yAxis : {
+			title : {
+				text : '关注数量'
+			}
+		},
+		plotOptions : {
+			line : {
+				dataLabels : {
+					enabled : true
+				},
+				enableMouseTracking : true
+			}
+		},
+		xAxis : xAxis,
+		series : series
+	});
+}
+
+/**
+ * 退订填充图表数据
+ * @param xAxis 横轴
+ * @param series 数据
+ */
+function unsubscribeFillData(xAxis, series) {
+	//绘制图表
+	Highcharts.setOptions(Highcharts.theme);
+	$('#unsubscribe').highcharts({
+		chart : {
+			type : 'line'
+		},
+		title : {
+			text : '取消关注统计'
 		},
 		yAxis : {
 			title : {
@@ -133,23 +142,23 @@ function uvFillData(xAxis, series) {
 }
 
 /**
- * PV统计
+ * 回流填充图表数据
  * @param xAxis 横轴
  * @param series 数据
  */
-function pvFillData(xAxis, series) {
+function backflowFillData(xAxis, series) {
 	//绘制图表
 	Highcharts.setOptions(Highcharts.theme);
-	$('#pVContainer').highcharts({
+	$('#backflow').highcharts({
 		chart : {
 			type : 'line'
 		},
 		title : {
-			text : 'PV(单用户30min内算一次  d-天 w-周 m-月)'
+			text : '回流统计'
 		},
 		yAxis : {
 			title : {
-				text : '数量'
+				text : '关注数量'
 			}
 		},
 		plotOptions : {
@@ -164,7 +173,6 @@ function pvFillData(xAxis, series) {
 		series : series
 	});
 }
-
 //主题
 Highcharts.theme = {
 	colors : [ "#DDDF0D", "#7798BF", "#55BF3B", "#DF5353", "#aaeeee",

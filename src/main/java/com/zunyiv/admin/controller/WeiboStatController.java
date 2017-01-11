@@ -53,4 +53,27 @@ public class WeiboStatController {
             return RequestUtils.failReturn("fail");
         }
     }
+
+    @RequestMapping("/stat")
+    @ResponseBody
+    public String stat(HttpServletRequest request, HttpServletResponse response, Model model) {
+        try {
+            List<WeiboRecord> list = new ArrayList<>();
+            String sDate = request.getParameter("startDate");
+            String eDate = request.getParameter("endDate");
+
+            //默认查询一周的数据
+            if (StringUtils.isEmpty(sDate) || StringUtils.isEmpty(eDate)) {
+                eDate = DateUtils.getNextDay(new Date(), "1", DateUtils.PATTERN_YYYYMMDD);
+                sDate = DateUtils.getNextDay(new Date(), "-7", DateUtils.PATTERN_YYYYMMDD);
+            }
+            list = weiboRecordService.stat(sDate, eDate);
+            return RequestUtils.successReturn(JSONArray.toJSONString(list));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return RequestUtils.failReturn("fail");
+        }
+    }
+
+
 }

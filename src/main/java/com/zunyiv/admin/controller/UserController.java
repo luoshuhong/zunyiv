@@ -1,5 +1,6 @@
 package com.zunyiv.admin.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.zunyiv.admin.model.User;
 import com.zunyiv.admin.service.UserService;
 import com.zunyiv.common.MD5Util;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/3.
@@ -38,6 +40,19 @@ public class UserController {
             }
             userService.addUser(new User(phone, role, MD5Util.md5(phone)));
             return RequestUtils.successReturn("success");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return RequestUtils.failReturn("fail");
+    }
+
+
+    @RequestMapping("/userQuery")
+    @ResponseBody
+    public String query(HttpServletRequest request, HttpServletResponse response){
+        try {
+            List<User> list = this.userService.query();
+            return RequestUtils.successReturn(JSONArray.toJSONString(list));
         } catch (Exception e) {
             e.printStackTrace();
         }
