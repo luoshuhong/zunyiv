@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="css/lightbox.css">
     <link rel="shortcut icon" type="image/x-icon" href="images/head_32.ico" media="screen" />
     <!-- Custom Theme files -->
-    <script src="js/jquery-1.8.3.min.js"></script>
     <!--//theme style-->
 
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
