@@ -1,7 +1,9 @@
 package com.zunyiv.common;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -62,48 +64,48 @@ public class PropertyUtils {
         return fieldValue;
 	}
 
-//    public static String getProperty(String environmentKey ,String fileName, String propertyName){
-//        if(fileName == null || fileName.trim().isEmpty()){
-//            log.error("**********没有找到" + fileName + ".properties文件**********");
-//            return null;
-//        }
-//
-//        if (fileName.split("\\.").length == 1){
-//            fileName += ".properties";
-//        }
-//
-//        if(propertyName == null || propertyName.trim().isEmpty()){
-//            log.error("**********没有找到" + propertyName + "属性**********");
-//            return null;
-//        }
-//
-//        Properties props = new Properties();
-//        String fieldValue = "";
-//        InputStream is = null;
-//
-//        Map<String,String> envMap = System.getenv();
-//        String filePath = envMap.get(environmentKey);
-//
-//        try {
-//            is = new FileInputStream(filePath + "\\" + fileName ) ;
-//            props.load(is);
-//            if(!props.containsKey(propertyName)){
-//                log.error("**********从" + fileName + ".properties文件获取"+ propertyName + "失败**********");
-//                return fieldValue;
-//            }
-//            fieldValue = props.getProperty(propertyName);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            log.error("**********从" + fileName + ".properties文件获取"+ propertyName + "失败**********");
-//        } finally {
-//            try {
-//                is.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return fieldValue;
-//    }
+    public static String getProperty(String environmentKey ,String fileName, String propertyName){
+        if(fileName == null || fileName.trim().isEmpty()){
+            log.error("**********没有找到" + fileName + ".properties文件**********");
+            return null;
+        }
+
+        if (fileName.split("\\.").length == 1){
+            fileName += ".properties";
+        }
+
+        if(propertyName == null || propertyName.trim().isEmpty()){
+            log.error("**********没有找到" + propertyName + "属性**********");
+            return null;
+        }
+
+        Properties props = new Properties();
+        String fieldValue = "";
+        InputStream is = null;
+
+        Map<String,String> envMap = System.getenv();
+        String filePath = envMap.get(environmentKey);
+
+        try {
+            is = new FileInputStream(filePath + "\\" + fileName ) ;
+            props.load(is);
+            if(!props.containsKey(propertyName)){
+                log.error("**********从" + fileName + ".properties文件获取"+ propertyName + "失败**********");
+                return fieldValue;
+            }
+            fieldValue = props.getProperty(propertyName);
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("**********从" + fileName + ".properties文件获取"+ propertyName + "失败**********");
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return fieldValue;
+    }
 
     public static void main(String[] args) {
 //        System.out.println(PropertyUtils.getProperty("ESTIMATE_CONFIG_HOME","config","max_process_times"));
