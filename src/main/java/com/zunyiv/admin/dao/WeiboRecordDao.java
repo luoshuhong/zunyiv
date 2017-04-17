@@ -9,10 +9,7 @@ import weibo4j.model.Status;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -62,8 +59,7 @@ public class WeiboRecordDao {
 	}
 
 	/**
-	 * 微信设置更新用户信息
-	 * @param user
+	 * 根据微博id查询微博
 	 * @return
      */
 	public WeiboRecord queryByWeiboId(String weiboId) {
@@ -132,6 +128,23 @@ public class WeiboRecordDao {
 			list.add(model);
 		}
 		return list;
+	}
+
+	/**
+	 * 查询微博小尾巴
+	 * @return
+	 */
+	public Set<String> queryWeiBoTail() {
+		Set<String> set = new HashSet<>();
+		String sql = "select DISTINCT(source) as source from tb_weibo_record";
+		List<Map<String, Object>> listMap = this.jdbcTemplate.queryForList(sql);
+		if (listMap == null || 0 == listMap.size()) {
+			return set;
+		}
+		for (Map<String, Object> map : listMap) {
+			set.add(map.get("source").toString());
+		}
+		return set;
 	}
 
 

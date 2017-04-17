@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by luoshuhong on 2016/12/27.
@@ -28,7 +29,6 @@ public class WeiboRecordService {
     /**
      * 根据微博内容关键字查询
      * @param keyWord 关键字
-     * @param eDate
      * @return
      */
     public List<WeiboRecord> query(String keyWord) {
@@ -44,4 +44,13 @@ public class WeiboRecordService {
     public List<WeiboRecord> stat(String sDate, String eDate) {
         return this.weiboRecordDao.stat(sDate, eDate);
     }
+
+    /**
+     * 查询微博小尾巴
+     * @return
+     */
+    public Set<String> queryWeiBoTail() {
+        return this.weiboRecordDao.queryWeiBoTail();
+    }
 }
+

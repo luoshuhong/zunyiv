@@ -11,13 +11,13 @@ public class User {
     private String nickName;
     private String realName;
     private String phone;
-    private Date birthday;
+    private String birthday;
     private Date inputTime;
     private int role;         //0：普通 1：管理员  2.超级管理员
     private String password;
     private int professional; //0：学生 1：工作
     private String avator;
-    private String weiboTail; //微博小尾巴
+    private String weiboTail = ""; //微博小尾巴
 
     public User(String phone, int role, String pwd) {
         this.phone = phone;
@@ -105,11 +105,11 @@ public class User {
         return phone;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -124,4 +124,6 @@ public class User {
     public int getRole() {
         return role;
     }
+
+
 }

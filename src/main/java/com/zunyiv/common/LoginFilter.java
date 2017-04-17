@@ -64,7 +64,7 @@ public class LoginFilter implements Filter {
      */
     public boolean isExclusive(String url){
     	//这里只拦截/admin下的请求
-    	if (url.contains("/admin/login.do")   || url.contains(".css") || url.contains("/admin/login.jsp")
+    	if (url.contains("/admin/login.do")  || url.contains("/weixin/fillWeiBo")  || url.contains(".css") || url.contains("/admin/login.jsp")
     			|| url.contains(".png") || url.contains(".jpg") 
     			|| (url.contains(".js") && !url.contains(".jsp"))) {   
     		return true;

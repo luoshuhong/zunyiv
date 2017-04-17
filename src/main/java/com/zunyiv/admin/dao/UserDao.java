@@ -2,8 +2,7 @@ package com.zunyiv.admin.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import com.zunyiv.admin.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class UserDao {
 	@Autowired
     private JdbcTemplate jdbcTemplate;
 
-	private static String QUERY_RESULT_PARAM_ALL = "SELECT id,openid,nickName,realName,phone,professional,birthday,inputTime,role,password,avator from tb_user ";
+	private static String QUERY_RESULT_PARAM_ALL = "SELECT id,openid,nickName,realName,phone,professional,birthday,inputTime,role,password,avator,weiboTail from tb_user ";
 
 	/**
 	 * 添加用户
@@ -30,11 +29,22 @@ public class UserDao {
 	 * @return
      */
 	public boolean addUser(User user) {
-		String insertSql = "insert into tb_user (openid,nickName,realName,phone,professional," +
-				"birthday,inputTime,role,password,avator) values(?,?,?,?,?,?,?,?,?,?)";
+		String insertSql = "insert into tb_user (openid,nickName,realName,phone,professional,"
+				+ "birthday,inputTime,role,password,avator,weiboTail) values(?,?,?,?,?,?,?,?,?,?,?)";
 		return 1 == this.jdbcTemplate.update(insertSql, new Object[]{user.getOpenid(), user.getNickName(),
 			user.getRealName(), user.getPhone(), user.getProfessional(), user.getBirthday(),
-			new Date(), user.getRole(), user.getPassword(), user.getAvator()});
+			new Date(), user.getRole(), user.getPassword(), user.getAvator(), user.getWeiboTail()});
+	}
+
+	/**
+	 * 置更新用户信息
+	 * @param user
+	 * @return
+	 */
+	public boolean updateUser(User user) {
+		String updateSql = "update tb_user set realName = ?,birthday = ?, weiboTail = ?, professional = ? where phone = ?";
+		return 1 == this.jdbcTemplate.update(updateSql, new Object[]{user.getRealName(), user.getBirthday(),
+				user.getWeiboTail(), user.getProfessional(), user.getPhone()});
 	}
 
 
@@ -84,6 +94,22 @@ public class UserDao {
 		return null;
 	}
 
+	/**
+	 * 获取当前用户所有小尾巴
+	 * @return
+	 */
+	public Set<String> queryAllWeiBoTail() {
+		String sql = "select DISTINCT(weiboTail) as tail from tb_user";
+		Set<String> set = new HashSet<>();
+		List<Map<String, Object>> listMap = this.jdbcTemplate.queryForList(sql);
+		if (listMap == null || 0 == listMap.size()) {
+			return set;
+		}
+		for (Map<String, Object> map : listMap) {
+			set.add(map.get("tail").toString());
+		}
+		return set;
+	}
 
 
 	class UserRowMapper implements RowMapper<User> {
@@ -96,12 +122,13 @@ public class UserDao {
 			user.setNickName(rs.getString("nickName"));
 			user.setRealName(rs.getString("realName"));
 			user.setPhone(rs.getString("phone"));
-			user.setBirthday(rs.getDate("birthday"));
+			user.setBirthday(rs.getString("birthday"));
 			user.setInputTime(rs.getDate("inputTime"));
 			user.setRole(rs.getInt("role"));
 			user.setPassword(rs.getString("password"));
 			user.setAvator(rs.getString("avator"));
 			user.setProfessional(rs.getInt("professional"));
+			user.setWeiboTail(rs.getString("weiboTail"));
 			return user;
 		}
 	}

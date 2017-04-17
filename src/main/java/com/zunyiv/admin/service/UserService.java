@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2016/12/3.
@@ -32,6 +33,15 @@ public class UserService {
      */
     public boolean updateUserFormWX(User user) {
        return this.userDao.updateUserFormWX(user);
+    }
+
+    /***
+     * 更新用户信息
+     * @param user
+     * @return
+     */
+    public boolean updateUser(User user) {
+        return this.userDao.updateUser(user);
     }
 
     /**
@@ -62,5 +72,11 @@ public class UserService {
        return this.userDao.query(phone);
     }
 
-
+    /**
+     * 获取当前用户所有小尾巴
+     * @return
+     */
+    public Set<String> queryAllWeiBoTail() {
+        return this.userDao.queryAllWeiBoTail();
+    }
 }

@@ -50,42 +50,6 @@
     <!-- ========== 数据源配置 end ========== -->
 
 
-    <!--<bean id="virualStatDao" class="com.newleader.nlsite.admin.dao.VirualStatDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="statActionDataDao" class="com.newleader.nlsite.admin.dao.StatActionDataDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="statUserActiveDao" class="com.newleader.nlsite.admin.dao.StatUserActiveDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="statResultDao" class="com.newleader.nlsite.admin.dao.StatResultDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="commonDao" class="com.newleader.nlsite.admin.dao.CommonDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="statMajorDao" class="com.newleader.nlsite.admin.dao.StatMajorDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="statViralProDao" class="com.newleader.nlsite.admin.dao.StatViralProDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="statViralLoveDao" class="com.newleader.nlsite.admin.dao.StatViralLoveDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="ifMessageDao" class="com.newleader.nlsite.admin.dao.IfMessageDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-	<!--<bean id="statLoveMsgDao" class="com.newleader.nlsite.admin.dao.StatLoveMsgDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="statMyPageDao" class="com.newleader.nlsite.admin.dao.StatMyPageDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
-    <!--<bean id="ticketDao" class="com.newleader.nlsite.admin.dao.TicketDao">  -->
-    	<!--<property name="dataSource" ref="dynamicDataSource"></property>  -->
-    <!--</bean>-->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="writeDataSource" />
 	</bean>
