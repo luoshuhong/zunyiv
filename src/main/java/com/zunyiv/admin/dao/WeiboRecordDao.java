@@ -1,6 +1,7 @@
 package com.zunyiv.admin.dao;
 
 import com.zunyiv.admin.model.WeiboRecord;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -38,8 +39,9 @@ public class WeiboRecordDao {
 					weiStatus.getRetweetedStatus() == null ? 0 : 1, weiStatus.getCreatedAt(), weiStatus.getSource() == null ? "" : weiStatus.getSource().getName()});
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 1 == this.jdbcTemplate.update("insert into tb_weibo_record (weiboId, source) values(?,?)",
-					new Object[]{weiStatus.getId(), weiStatus.getSource() == null ? "" : weiStatus.getSource().getName()});
+			return 1 == this.jdbcTemplate.update("insert into tb_weibo_record (weiboId, source, createDate, content) values(?,?,?,?)",
+					new Object[]{weiStatus.getId(), weiStatus.getSource() == null ? "" : weiStatus.getSource().getName(),
+							weiStatus.getCreatedAt(), weiStatus.getText().substring(0, 10) + "..."});
 		}
 	}
 
@@ -109,13 +111,60 @@ public class WeiboRecordDao {
 	}
 
 	/**
+	 * 多条件复合查询
+	 * @param sDate
+	 * @param eDate
+	 * @param keyWord
+	 * @param reposts
+	 * @param comments
+     * @param likes
+     * @return
+     */
+	public List<WeiboRecord> query(String sDate, String eDate, String keyWord,
+			   int reposts, int comments, int likes, String tail) {
+		List<Objects> argsList = new ArrayList<>();
+		String sql = "select id, userId, weiboId, content, url, repostsCount, commentsCount, likeCount, source, retweetedStatus,createDate " +
+				" from tb_weibo_record where ";
+		if (!StringUtils.isEmpty(keyWord)) {
+			sql += "content like '%" + keyWord + "%' and ";
+		}
+		if (reposts > 0) {
+			sql += " repostsCount >= " + reposts + " and ";
+		}
+		if (comments > 0) {
+			sql += " commentsCount >= " + comments + " and ";
+		}
+		if (likes > 0) {
+			sql += " likeCount >= " + likes + " and ";
+		}
+
+		if (!StringUtils.isEmpty(tail)) {
+			sql += " source = '" + tail.trim() + "' and ";
+		}
+
+		sql += " createDate > ? and createDate < ? order by createDate desc";
+
+		List<WeiboRecord> list = this.jdbcTemplate.query(sql,new Object[]{sDate, eDate}, new WeiboRecordRowMapper());
+		return list;
+	}
+
+	/**
 	 * 统计小尾巴发微博数量
 	 * @param sDate
 	 * @param eDate
+	 * @param type 1:发博数 2：转发数 3：评论数  4：点赞数
 	 * @return
 	 */
-	public List<WeiboRecord> stat(String sDate, String eDate) {
+	public List<WeiboRecord> stat(String sDate, String eDate, int type) {
 		String sql = "select source, count(1) as count  from tb_weibo_record where createDate > ? and createDate < ? GROUP BY source ORDER BY count desc";
+		if (2 == type) {
+			sql = "select source, sum(repostsCount) as count  from tb_weibo_record where createDate > ? and createDate < ? GROUP BY source ORDER BY count desc";
+		} else if (3 == type) {
+			sql = "select source, sum(commentsCount) as count  from tb_weibo_record where createDate > ? and createDate < ? GROUP BY source ORDER BY count desc";
+		} else if (4 == type) {
+			sql = "select source, sum(likeCount) as count  from tb_weibo_record where createDate > ? and createDate < ? GROUP BY source ORDER BY count desc";
+		}
+
 		List<WeiboRecord> list = new ArrayList<>();
 		List<Map<String, Object>> listMap = this.jdbcTemplate.queryForList(sql,new Object[]{sDate, eDate});
 		if (listMap == null || 0 == listMap.size()) {

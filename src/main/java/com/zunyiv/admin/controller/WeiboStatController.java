@@ -35,17 +35,27 @@ public class WeiboStatController {
             List<WeiboRecord> list = new ArrayList<>();
             String sDate = request.getParameter("startDate");
             String eDate = request.getParameter("endDate");
-            String value = request.getParameter("value");
-            if (!StringUtils.isEmpty(value)) {
-                list = weiboRecordService.query(value);
-            } else {
-                //默认查询一周的数据
-                if (StringUtils.isEmpty(sDate) || StringUtils.isEmpty(eDate)) {
-                    eDate = DateUtils.getNextDay(new Date(), "1", DateUtils.PATTERN_YYYYMMDD);
-                    sDate = DateUtils.getNextDay(new Date(), "-7", DateUtils.PATTERN_YYYYMMDD);
-                }
-                list = weiboRecordService.query(sDate, eDate);
+            String keyWord = request.getParameter("value");
+            String tail = request.getParameter("tail");
+
+            int reposts = Integer.valueOf(request.getParameter("reposts"));
+            int comments = Integer.valueOf(request.getParameter("comments"));
+            int likes = Integer.valueOf(request.getParameter("likes"));
+
+            //默认查询一周的数据
+            if (StringUtils.isEmpty(sDate) || StringUtils.isEmpty(eDate)) {
+                eDate = DateUtils.getNextDay(new Date(), "1", DateUtils.PATTERN_YYYYMMDD);
+                sDate = DateUtils.getNextDay(new Date(), "-7", DateUtils.PATTERN_YYYYMMDD);
             }
+
+            list = weiboRecordService.query(sDate, eDate, keyWord, reposts, comments, likes, tail);
+
+
+//            if (!StringUtils.isEmpty(value)) {
+//                list = weiboRecordService.query(keyWord);
+//            } else {
+//                list = weiboRecordService.query(sDate, eDate);
+//            }
             model.addAttribute("data", list);
             return RequestUtils.successReturn(JSONArray.toJSONString(list));
         } catch (Exception e) {
@@ -61,19 +71,23 @@ public class WeiboStatController {
             List<WeiboRecord> list = new ArrayList<>();
             String sDate = request.getParameter("startDate");
             String eDate = request.getParameter("endDate");
+            // 1:发博数 2：转发数 3：评论数  4：点赞数
+            int type = Integer.valueOf(request.getParameter("type"));
 
             //默认查询一周的数据
             if (StringUtils.isEmpty(sDate) || StringUtils.isEmpty(eDate)) {
                 eDate = DateUtils.getNextDay(new Date(), "1", DateUtils.PATTERN_YYYYMMDD);
                 sDate = DateUtils.getNextDay(new Date(), "-7", DateUtils.PATTERN_YYYYMMDD);
             }
-            list = weiboRecordService.stat(sDate, eDate);
+            list = weiboRecordService.stat(sDate, eDate, type);
             return RequestUtils.successReturn(JSONArray.toJSONString(list));
         } catch (Exception e) {
             e.printStackTrace();
             return RequestUtils.failReturn("fail");
         }
     }
+
+    //
 
 
 }

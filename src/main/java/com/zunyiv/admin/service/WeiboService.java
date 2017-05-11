@@ -64,7 +64,7 @@ public class WeiboService {
             log.info("[updateWeiboRecord] accountInfo is null。 accountInfo:" + accountInfo);
             return;
         }
-        List<WeiboRecord> list =  weiboRecordDao.queryUpdateWeiRecord(7);
+        List<WeiboRecord> list =  weiboRecordDao.queryUpdateWeiRecord(14);
         if (null == list) {
             log.info("[updateWeiboRecord] there is no record need to update:");
             return;
@@ -77,7 +77,7 @@ public class WeiboService {
                     continue;
                 }
                 weiboRecordDao.update(status);
-                Thread.sleep(60 * 1000);
+                Thread.sleep(30 * 1000);
             }
         } catch (Exception e) {
             log.info("[syncWeiboRecord] exceptoin. error:" + e.getMessage());

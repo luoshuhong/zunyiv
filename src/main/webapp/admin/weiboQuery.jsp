@@ -15,21 +15,32 @@ date 2016
 	</head>
 
 	<body>
-	<div class="row">
-		<div class="col-xs-3">
-			<h2>微博查询</h2>
-		</div>
-		<div class="col-xs-9" style="margin-top: 20px; text-align: right;">
-			<form class="form-inline" action="">
-				<label for="startDate">日期：</label>
-				<input id="startDate"  type="text" class="form-control" onClick="WdatePicker()" >
-				<label for="endDate">~</label>
-				<input type="text" id="endDate" class="form-control" onClick="WdatePicker()">
-				OR
-				<input type="text"  class="form-control" id="value" onblur="loadData();" name="value" placeholder="请输入关键字">
-				<button type="button" id="queryBtn" onclick="loadData();" class="btn btn-primary">模糊查找</button>
-			</form>
-		</div>
+	<div class="row" style="margin-left: 20px; text-align: left;">
+		<form class="form-inline" action="">
+			<h3>微博查询</h3>
+		</form>
+		<form class="form-inline" action="">
+			<label for="startDate">日期：</label>
+			<input id="startDate"  type="text" style="width: 110px;" class="form-control" onClick="WdatePicker()" >
+			<label for="endDate">~</label>
+			<input type="text" id="endDate" style="width: 110px;" class="form-control" onClick="WdatePicker()">
+			<label for="tail">小尾巴:</label>
+			<input type="text"  class="form-control" id="tail" style="width: 150px;"  placeholder="请输入微博小尾巴">
+			<label for="tail">关键字:</label>
+			<input type="text"  class="form-control" id="value"  name="value" placeholder="请输入关键字模糊查找">
+		</form>
+		<form class="form-inline" action="">
+			<label for="reposts">转发>=</label>
+			<input type="number" id="reposts" style="width: 110px;" value="0"   class="form-control" name="reposts">
+			<label for="comments">评论>=</label>
+			<input type="number" id="comments" style="width: 110px;" value="0"  class="form-control" name="comments">
+			<label for="likes">点赞>=</label>
+			<input type="number" id="likes" style="width: 110px;" value="0" class="form-control" name="likes">
+			<button type="button" id="queryBtn" onclick="loadData();" class="btn btn-primary">查询</button>
+		</form>
+	</div>
+	<div class="row ">
+
 	</div>
 
 	<div class="table-responsive">
@@ -37,11 +48,11 @@ date 2016
 			<thead class="thead" >
 			<tr>
 				<th bgcolor="#87CEEB">日期</th>
-				<th bgcolor="#87CEEB">内容</th>
+				<th bgcolor="#87CEEB" style="width: 45%;">内容</th>
 				<th bgcolor="#87CEEB">转发数</th>
 				<th bgcolor="#87CEEB">评论数</th>
 				<th bgcolor="#87CEEB">点赞数</th>
-				<th bgcolor="#87CEEB">来源</th>
+				<th bgcolor="#87CEEB" style="width: 10%;">来源</th>
 				<th bgcolor="#87CEEB">发送人</th>
 				<th bgcolor="#87CEEB">是否转发</th>
 			</tr>
@@ -65,7 +76,14 @@ date 2016
 		var value = $("#value").val();
 		var startDate = $("#startDate").val();
 		var endDate = $("#endDate").val();
-		var postData = {"startDate":startDate, "endDate":endDate, "value":value};
+		var reposts = $("#reposts").val();
+		var comments = $("#comments").val();
+		var likes = $("#likes").val();
+		var tail = $("#tail").val();
+
+		var postData = {"startDate": startDate, "endDate": endDate,
+			"value": value, "reposts": reposts, "comments": comments, "likes": likes, "tail": tail };
+
 		$.ajax({
 			type: "POST",
 			url: "${ctx}/admin/weibostat/query",
