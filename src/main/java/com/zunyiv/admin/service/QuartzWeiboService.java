@@ -65,7 +65,7 @@ public class QuartzWeiboService {
             log.info("[updateWeiboRecord] accountInfo is null。 accountInfo:" + accountInfo);
             return;
         }
-        List<WeiboRecord> list =  weiboRecordDao.queryUpdateWeiRecord(10);
+        List<WeiboRecord> list =  weiboRecordDao.queryUpdateWeiRecord(7);
         if (null == list) {
             log.info("[updateWeiboRecord] there is no record need to update:");
             return;
@@ -74,7 +74,7 @@ public class QuartzWeiboService {
 
             Timeline timeLint = new Timeline(accountInfo[0]);
             for (WeiboRecord weiboRecord : list) {
-                Thread.sleep(60 * 1000);
+                Thread.sleep(100 * 1000);
                 Status status = timeLint.showStatus(weiboRecord.getWeiboId());
                 if (null == status) {
                     continue;
