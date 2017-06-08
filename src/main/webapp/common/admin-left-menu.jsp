@@ -114,12 +114,13 @@ date 2016
 
                     <li>
                         <a href="#weiboManage" class="nav-header collapsed" data-toggle="collapse">
-                            <i class="glyphicon glyphicon-credit-card" ></i> 微博管理 <span
+                            <i class="glyphicon glyphicon-credit-card" ></i> 资源管理 <span
                                 class="pull-right glyphicon glyphicon-chevron-down"></span>
                         </a>
                         <ul id="weiboManage" class="nav nav-list collapse secondmenu" style="height: 0px; ">
                             <li><a href="#" onclick="fillDataArea('weiboQuery');"><i class="glyphicon glyphicon-search"></i>微博查看</a></li>
                             <li><a href="#" onclick="fillDataArea('weiboStat');"><i class="glyphicon glyphicon-search"></i>微博统计</a></li>
+                            <li><a href="#" onclick="fillDataArea('lizhiQuery');"><i class="glyphicon glyphicon-search"></i>荔枝查看</a></li>
                         </ul>
                     </li>
 				</ul>
@@ -142,13 +143,15 @@ date 2016
             iframe = "<iframe src='../admin/userQuery.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
         } else if (type == 'weiboQuery') {
             iframe = "<iframe src='../admin/weiboQuery.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
+        } else if (type == 'lizhiQuery') {
+            iframe = "<iframe src='../admin/lizhiQuery.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
         } else if (type == 'weiboStat') {
             iframe = "<iframe src='../admin/weiboStat.jsp' id='iframepage1' frameBorder=0 scrolling='auto' width='100%' height='90%' ></iframe>";
         } else {
 //			 iframe = "<iframe src='test.jsp' frameBorder=0  width='100%' height='90%' scrolling='auto' ></iframe>";
 		}
 		$("#data").html(iframe);
-	}  
+	}
 	
 	function iFrameHeight(id) {
 		var ifm = document.getElementById(id);

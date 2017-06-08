@@ -7,9 +7,12 @@
        >
 	<task:scheduled-tasks>
         <!-- 定时同步微博 -->
-        <task:scheduled ref="weiboService" method="syncWeiboRecord" cron="0 3/20 * * * ?"/>
+        <task:scheduled ref="quartzWeiboService" method="syncWeiboRecord" cron="0 3/20 * * * ?"/>
         <!-- 定时更新微博数据 -->
-        <task:scheduled ref="weiboService" method="updateWeiboRecord" cron="0 1 7,10,16,22 * * ?"/>
+        <task:scheduled ref="quartzWeiboService" method="updateWeiboRecord" cron="0 1 7,10,16,22 * * ?"/>
+        <!-- 定时同步荔枝数据 -->
+        <task:scheduled ref="quartzLizhiService" method="syncLizhiRecord" cron="0 21 23 * * ?"/>
+
         <!--<task:scheduled ref="weiboService" method="updateWeiboRecord" cron="0 6/10 * * * ?"/>-->
 
         <!-- 主表统计 -->

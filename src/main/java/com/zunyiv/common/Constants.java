@@ -22,5 +22,8 @@ public class Constants {
 	public static final String WX_UN_SBUSCRIBE = "third_wx_un_subscribe";	    //取关事件
 	public static final String WX_TEXT = "third_wx_text";					    //发送文字事件
 	public static final String WX_OTHER = "third_wx_other";			//其他事件
+
+	// 荔枝 网站
+	public static final String LI_ZHI_HOST = "https://www.lizhi.fm/";
 }
 
