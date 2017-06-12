@@ -31,7 +31,7 @@ date 2016
 							<a class="btn btn-primary btn-large" href="javascript:setSelfInfo();">补全信息</a>
 							<a class="btn btn-primary btn-large" target="_self" href="../game/gobang.html">来盘五子棋</a>
 							<c:if test="${sessionScope.get('role') == 2}">
-								<a class="btn btn-primary btn-large" target="_self" href="https://api.weibo.com/oauth2/authorize?client_id=3573275539&redirect_uri=http://www.zunyi.me/weibo/redirect&response_type=code">微博授权</a>
+								<a class="btn btn-primary btn-large" target="_self" href="https://api.weibo.com/oauth2/authorize?client_id=2722456167&redirect_uri=http://www.zunyi.me/weibo/redirect&response_type=code">微博授权</a>
 							</c:if>
 						</p>
 					</div>

@@ -15,6 +15,7 @@ import weibo4j.model.StatusWapper;
 import weibo4j.util.WeiboConfig;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by luoshuhong on 2016/12/21.
@@ -74,7 +75,8 @@ public class QuartzWeiboService {
 
             Timeline timeLint = new Timeline(accountInfo[0]);
             for (WeiboRecord weiboRecord : list) {
-                Thread.sleep(100 * 1000);
+                int random = new Random().nextInt(50);
+                Thread.sleep((100 + random) * 1000);
                 Status status = timeLint.showStatus(weiboRecord.getWeiboId());
                 if (null == status) {
                     continue;
